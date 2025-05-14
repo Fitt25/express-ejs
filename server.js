@@ -8,9 +8,25 @@ const port = 3000;
 const server = http.createServer((req, res) => {
   res.setHeader('Content-Type', 'text/html');
 
+  switch(req.url){
+    case '/':
+      res.statusCode = 200;
+      res.end('<h1>Welcome to our Home Page!</h1><p>Please add interesting info here.</p>');
+      break;
+
+    case '/about':
+      res.statusCode = 200;
+      res.end('<h1>Welcome to Linda Fitt\'s About Page!</h1><p>We are using Node.js for this project!</p>');
+      break;
+
+    default:
+      res.statusCode = 404;
+      res.end('<h1>File Not Found</h1><p>Please add interesting info here.</p>');
+      break;
+  }
+
   //default HTML
-  res.statusCode = 200;
-  res.end('<h1>Welcome to Node.js!</h1><p>Please add interesting info here.</p>');
+
 
 });
 
