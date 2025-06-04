@@ -38,3 +38,29 @@ Thumbs.db
 # OS-specific
 ehthumbs.db
 Icon?
+
+# MongoDB data files (in case of local use)
+data/
+dump/
+*.ns
+*.wt
+*.bak
+*.swp
+
+# Local test utilities
+test-connection.js
+
+# Docker artifacts (optional; uncomment if generated)
+# docker-compose.override.yml
+# docker-volume/
+
+.DS_Store
+Thumbs.db
+.vscode/
+
+# BUT we keep debug setup!
+!.vscode/launch.json
+
+# OS-specific
+ehthumbs.db
+Icon?
