@@ -23,6 +23,9 @@ var data = require('./test.json');
 
 //Create server, deal with requests/responses
 
+const recipeRoutes = require('./routes/recipes');
+app.use('/recipes', recipeRoutes);
+
 //home URL
 app.get('/',(req,res) =>{
   let title = "Home Page: Horses";
