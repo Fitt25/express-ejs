@@ -1,5 +1,12 @@
 <%- include('../partials/header', { title: 'All Recipes' }) %>
 
+<p>
+  Welcome to the Recipes Page! 🍳 This demo was built using <strong>Node.js</strong> and <strong>Express.js</strong>, with <strong>EJS templates</strong> handling the front-end rendering. The project demonstrates a <strong>list/view design pattern</strong>, where recipe data is pulled from a <strong>MongoDB database</strong> using <strong>Mongoose</strong> for smooth, schema-based data handling.
+</p>
+<p>
+  Whether you're here for Pancake Art, Emergency Mug Cake, or something totally ridiculous like Invisible Sandwich, this page is a fun way to showcase how server-side rendering and dynamic content work together in a full-stack web app.
+</p>
+
 <h1>All Recipes</h1>
 
 <table class="table table-hover">
@@ -23,10 +30,9 @@
       </tr>
     <% }) %>
   </tbody>
-  <div class="text-right mt-3">
-    <a href="/recipes/add" class="btn btn-success">Add Recipe</a>
-  </div>
-
 </table>
+<div class="text-right mt-3">
+  <a href="/recipes/add" class="btn btn-success">Add Recipe</a>
+</div>
 
 <%- include('../partials/footer') %>

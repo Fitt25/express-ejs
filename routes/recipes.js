@@ -53,6 +53,41 @@ router.get('/upload-pic/:id', async (req, res) => {
   }
 });
 
+const fs = require('fs');
+const imagePath = path.join(__dirname, '../public/images/recipes');
+
+/** DELETE: Remove a Recipe */
+router.delete('/:id', async (req, res) => {
+  try {
+    const recipe = await Recipe.findByIdAndDelete(req.params.id);
+    if (recipe) {
+      // Attempt to delete associated image
+      const imgFile = path.join(imagePath, `${recipe._id}.jpg`);
+      if (fs.existsSync(imgFile)) {
+        fs.unlinkSync(imgFile);
+      }
+
+      req.session.message = {
+        type: 'success',
+        text: 'Recipe and image deleted successfully.'
+      };
+    } else {
+      req.session.message = {
+        type: 'danger',
+        text: 'Recipe not found.'
+      };
+    }
+    res.redirect('/recipes');
+  } catch (err) {
+    console.error('❌ Delete error:', err);
+    req.session.message = {
+      type: 'danger',
+      text: 'Error deleting recipe.'
+    };
+    res.redirect('/recipes');
+  }
+});
+
 // GET edit form
 router.get('/edit/:id', async (req, res) => {
   try {
@@ -108,6 +143,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+
 // POST Add Recipe
 router.post('/add', async (req, res) => {
   try {
@@ -159,5 +195,7 @@ router.post('/upload-pic/:id', upload.single('image'), async (req, res) => {
     res.redirect(`/recipes/${req.params.id}`);
   }
 });
+
+
 
 module.exports = router;
